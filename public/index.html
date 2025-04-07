@@ -5,52 +5,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Otimizador de Anúncios - ML</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Otimizador de Anúncios</h1>
-            <p>Melhore seus anúncios do Mercado Livre com IA</p>
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <h1>Otimizador de Anúncios</h1>
+            </div>
+            <p>Melhore seus anúncios com IA</p>
         </header>
 
         <main>
             <form id="optimizerForm" class="optimizer-form">
-                <div class="form-group">
-                    <label for="category">Categoria do Produto</label>
-                    <input type="text" id="category" name="category" required 
-                           placeholder="Ex: Eletrônicos > Áudio > Fones de Ouvido">
+                <div class="marketplace-selector">
+                    <h3>Selecione o Marketplace</h3>
+                    <div class="marketplace-options">
+                        <label class="marketplace-option">
+                            <input type="radio" name="marketplace" value="mercadolivre" checked>
+                            <div class="marketplace-card">
+                                <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.19.1/mercadolibre/logo__large_plus.png" alt="Mercado Livre">
+                                <span>Mercado Livre</span>
+                            </div>
+                        </label>
+                        <label class="marketplace-option">
+                            <input type="radio" name="marketplace" value="shopee">
+                            <div class="marketplace-card">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Shopee.svg/1200px-Shopee.svg.png" alt="Shopee">
+                                <span>Shopee</span>
+                            </div>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="title">Título Original</label>
+                    <label for="category">
+                        <i class="fas fa-tags"></i>
+                        Categoria do Produto
+                    </label>
+                    <select id="category" name="category" required>
+                        <option value="">Selecione uma categoria</option>
+                        <optgroup label="Eletrônicos">
+                            <option value="Eletrônicos > Celulares e Smartphones">Celulares e Smartphones</option>
+                            <option value="Eletrônicos > Computadores">Computadores</option>
+                            <option value="Eletrônicos > Áudio">Áudio</option>
+                            <option value="Eletrônicos > TVs">TVs</option>
+                        </optgroup>
+                        <optgroup label="Moda">
+                            <option value="Moda > Roupas">Roupas</option>
+                            <option value="Moda > Calçados">Calçados</option>
+                            <option value="Moda > Acessórios">Acessórios</option>
+                            <option value="Moda > Bolsas e Mochilas">Bolsas e Mochilas</option>
+                        </optgroup>
+                        <optgroup label="Casa e Móveis">
+                            <option value="Casa e Móveis > Móveis">Móveis</option>
+                            <option value="Casa e Móveis > Decoração">Decoração</option>
+                            <option value="Casa e Móveis > Eletrodomésticos">Eletrodomésticos</option>
+                            <option value="Casa e Móveis > Cama, Mesa e Banho">Cama, Mesa e Banho</option>
+                        </optgroup>
+                        <optgroup label="Esportes">
+                            <option value="Esportes > Fitness">Fitness</option>
+                            <option value="Esportes > Ciclismo">Ciclismo</option>
+                            <option value="Esportes > Futebol">Futebol</option>
+                            <option value="Esportes > Suplementos">Suplementos</option>
+                        </optgroup>
+                        <optgroup label="Beleza e Cuidado Pessoal">
+                            <option value="Beleza e Cuidado Pessoal > Perfumes">Perfumes</option>
+                            <option value="Beleza e Cuidado Pessoal > Maquiagem">Maquiagem</option>
+                            <option value="Beleza e Cuidado Pessoal > Cabelos">Cabelos</option>
+                            <option value="Beleza e Cuidado Pessoal > Skincare">Skincare</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">
+                        <i class="fas fa-heading"></i>
+                        Título Original
+                    </label>
                     <input type="text" id="title" name="title" required 
                            placeholder="Digite o título atual do seu produto">
                 </div>
 
                 <div class="form-group">
-                    <label for="description">Descrição Original</label>
+                    <label for="description">
+                        <i class="fas fa-align-left"></i>
+                        Descrição Original
+                    </label>
                     <textarea id="description" name="description" required 
                               placeholder="Digite a descrição atual do seu produto"></textarea>
                 </div>
 
-                <button type="submit" class="submit-button">Otimizar Anúncio</button>
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-magic"></i>
+                    Otimizar Anúncio
+                </button>
             </form>
 
             <div id="results" class="results hidden">
-                <h2>Resultados da Otimização</h2>
+                <h2>
+                    <i class="fas fa-chart-line"></i>
+                    Resultados da Otimização
+                </h2>
                 
                 <div class="result-section">
-                    <h3>Título Otimizado</h3>
+                    <h3>
+                        <i class="fas fa-heading"></i>
+                        Título Otimizado
+                    </h3>
                     <div id="optimizedTitle" class="result-content"></div>
                 </div>
 
                 <div class="result-section">
-                    <h3>Descrição Otimizada</h3>
+                    <h3>
+                        <i class="fas fa-align-left"></i>
+                        Descrição Otimizada
+                    </h3>
                     <div id="optimizedDescription" class="result-content"></div>
                 </div>
 
                 <div class="result-section">
-                    <h3>Análise do Anúncio</h3>
+                    <h3>
+                        <i class="fas fa-chart-pie"></i>
+                        Análise do Anúncio
+                    </h3>
                     <div class="scores">
                         <div class="score">
                             <label>Score SEO</label>
@@ -64,15 +143,24 @@
                     
                     <div class="analysis-details">
                         <div class="detail-section">
-                            <h4>Pontos Fortes</h4>
+                            <h4>
+                                <i class="fas fa-thumbs-up"></i>
+                                Pontos Fortes
+                            </h4>
                             <ul id="strengths"></ul>
                         </div>
                         <div class="detail-section">
-                            <h4>Pontos a Melhorar</h4>
+                            <h4>
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Pontos a Melhorar
+                            </h4>
                             <ul id="weaknesses"></ul>
                         </div>
                         <div class="detail-section">
-                            <h4>Sugestões</h4>
+                            <h4>
+                                <i class="fas fa-lightbulb"></i>
+                                Sugestões
+                            </h4>
                             <ul id="suggestions"></ul>
                         </div>
                     </div>

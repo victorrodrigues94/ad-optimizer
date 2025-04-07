@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const formData = {
+                marketplace: form.querySelector('input[name="marketplace"]:checked').value,
                 category: document.getElementById('category').value,
                 title: document.getElementById('title').value,
                 description: document.getElementById('description').value
@@ -69,4 +70,22 @@ document.addEventListener('DOMContentLoaded', () => {
             ul.appendChild(li);
         });
     }
+
+    // Adicionar efeito hover nos cards de marketplace
+    const marketplaceCards = document.querySelectorAll('.marketplace-card');
+    marketplaceCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            if (!card.previousElementSibling.checked) {
+                card.style.transform = 'translateY(-2px)';
+                card.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        card.addEventListener('mouseleave', () => {
+            if (!card.previousElementSibling.checked) {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = 'none';
+            }
+        });
+    });
 }); 

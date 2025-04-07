@@ -6,6 +6,8 @@
     --success-color: #48BB78;
     --warning-color: #ED8936;
     --error-color: #F56565;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
 }
 
 * {
@@ -32,6 +34,19 @@ header {
     margin-bottom: 3rem;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.logo i {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+}
+
 header h1 {
     font-size: 2.5rem;
     color: var(--primary-color);
@@ -46,9 +61,60 @@ header p {
 .optimizer-form {
     background: white;
     padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
     margin-bottom: 2rem;
+}
+
+.marketplace-selector {
+    margin-bottom: 2rem;
+}
+
+.marketplace-selector h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.marketplace-options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.marketplace-option {
+    flex: 1;
+    min-width: 200px;
+}
+
+.marketplace-option input[type="radio"] {
+    display: none;
+}
+
+.marketplace-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    border: 2px solid #E2E8F0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.marketplace-card img {
+    width: 120px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.marketplace-card span {
+    font-weight: 500;
+    color: var(--secondary-color);
+}
+
+.marketplace-option input[type="radio"]:checked + .marketplace-card {
+    border-color: var(--accent-color);
+    background-color: rgba(66, 153, 225, 0.05);
 }
 
 .form-group {
@@ -56,19 +122,26 @@ header p {
 }
 
 label {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     margin-bottom: 0.5rem;
     color: var(--secondary-color);
     font-weight: 500;
 }
 
-input, textarea {
+label i {
+    color: var(--accent-color);
+}
+
+input, textarea, select {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #E2E8F0;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 1rem;
-    transition: border-color 0.2s;
+    transition: var(--transition);
+    background-color: white;
 }
 
 textarea {
@@ -76,34 +149,73 @@ textarea {
     resize: vertical;
 }
 
-input:focus, textarea:focus {
+input:focus, textarea:focus, select:focus {
     outline: none;
     border-color: var(--accent-color);
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
 }
 
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234A5568' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+select option {
+    padding: 0.5rem;
+}
+
+select optgroup {
+    font-weight: 600;
+    color: var(--primary-color);
+    padding: 0.5rem 0;
+}
+
+select optgroup option {
+    font-weight: normal;
+    padding-left: 1.5rem;
+}
+
 .submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     background-color: var(--accent-color);
     color: white;
     padding: 0.75rem 1.5rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: var(--transition);
     width: 100%;
 }
 
 .submit-button:hover {
     background-color: #3182CE;
+    transform: translateY(-1px);
+}
+
+.submit-button:active {
+    transform: translateY(0);
 }
 
 .results {
     background: white;
     padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
 }
 
 .results.hidden {
@@ -123,15 +235,23 @@ input:focus, textarea:focus {
 }
 
 .result-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
 }
 
+.result-section h3 i {
+    color: var(--accent-color);
+}
+
 .result-content {
     background: #F7FAFC;
-    padding: 1rem;
-    border-radius: 4px;
+    padding: 1.5rem;
+    border-radius: 8px;
     white-space: pre-wrap;
+    line-height: 1.8;
 }
 
 .scores {
@@ -143,20 +263,28 @@ input:focus, textarea:focus {
 .score {
     flex: 1;
     text-align: center;
-    padding: 1rem;
+    padding: 1.5rem;
     background: #F7FAFC;
-    border-radius: 4px;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.score:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--card-shadow);
 }
 
 .score label {
     font-size: 0.9rem;
     color: var(--secondary-color);
+    justify-content: center;
 }
 
 .score-value {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
     color: var(--accent-color);
+    margin-top: 0.5rem;
 }
 
 .analysis-details {
@@ -165,9 +293,28 @@ input:focus, textarea:focus {
     gap: 1.5rem;
 }
 
+.detail-section {
+    background: #F7FAFC;
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.detail-section:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--card-shadow);
+}
+
 .detail-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     color: var(--secondary-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.detail-section h4 i {
+    color: var(--accent-color);
 }
 
 .detail-section ul {
@@ -177,11 +324,16 @@ input:focus, textarea:focus {
 
 .detail-section li {
     margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
 }
 
 @media (max-width: 768px) {
     .container {
         padding: 1rem;
+    }
+    
+    .marketplace-options {
+        flex-direction: column;
     }
     
     .scores {

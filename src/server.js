@@ -21,16 +21,16 @@ const openAIService = new OpenAIService();
 // Endpoint para otimização
 app.post('/api/optimize', async (req, res) => {
     try {
-        const { title, description, category } = req.body;
+        const { title, description, category, marketplace } = req.body;
 
         // Otimizar título
-        const optimizedTitle = await openAIService.optimizeTitle(title, category);
+        const optimizedTitle = await openAIService.optimizeTitle(title, category, marketplace);
 
         // Otimizar descrição
-        const optimizedDescription = await openAIService.optimizeDescription(description, optimizedTitle, category);
+        const optimizedDescription = await openAIService.optimizeDescription(description, optimizedTitle, category, marketplace);
 
         // Analisar o anúncio otimizado
-        const analysis = await openAIService.analyzeListing(optimizedTitle, optimizedDescription);
+        const analysis = await openAIService.analyzeListing(optimizedTitle, optimizedDescription, marketplace);
 
         // Retornar resultados
         res.json({

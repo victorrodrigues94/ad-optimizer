@@ -10,18 +10,20 @@ class OpenAIService {
     });
   }
 
-  async optimizeTitle(originalTitle, category) {
+  async optimizeTitle(originalTitle, category, marketplace) {
     try {
-      const prompt = `Como especialista em SEO e copywriting para o Mercado Livre, optimize o seguinte título de produto para maximizar conversões e visibilidade:
+      const marketplaceInfo = this.getMarketplaceInfo(marketplace);
+      const prompt = `Como especialista em SEO e copywriting para ${marketplaceInfo.name}, optimize o seguinte título de produto para maximizar conversões e visibilidade:
       
 Título Original: "${originalTitle}"
 Categoria: "${category}"
 
 Considere:
 1. Palavras-chave relevantes
-2. Limite de caracteres do Mercado Livre
+2. Limite de caracteres do ${marketplaceInfo.name} (${marketplaceInfo.titleLimit})
 3. Incluir informações importantes como marca, modelo, características principais
 4. Ordem das palavras para SEO
+5. ${marketplaceInfo.specificTips}
 
 Retorne apenas o título otimizado, sem explicações.`;
 
@@ -39,22 +41,24 @@ Retorne apenas o título otimizado, sem explicações.`;
     }
   }
 
-  async optimizeDescription(originalDescription, title, category) {
+  async optimizeDescription(originalDescription, title, category, marketplace) {
     try {
-      const prompt = `Como especialista em copywriting para e-commerce, especialmente Mercado Livre, reescreva a seguinte descrição de produto para maximizar conversões:
+      const marketplaceInfo = this.getMarketplaceInfo(marketplace);
+      const prompt = `Como especialista em copywriting para ${marketplaceInfo.name}, reescreva a seguinte descrição de produto para maximizar conversões:
 
 Título: "${title}"
 Categoria: "${category}"
 Descrição Original: "${originalDescription}"
 
 Considere:
-1. Formato adequado para o Mercado Livre
+1. Formato adequado para o ${marketplaceInfo.name}
 2. Destaque dos principais benefícios
 3. Especificações técnicas importantes
 4. Palavras-chave para SEO
 5. Chamadas para ação (CTAs)
 6. Garantias e diferenciais
 7. Formatação com bullets points quando apropriado
+8. ${marketplaceInfo.specificTips}
 
 Retorne a descrição formatada e otimizada.`;
 
@@ -72,9 +76,10 @@ Retorne a descrição formatada e otimizada.`;
     }
   }
 
-  async analyzeListing(title, description) {
+  async analyzeListing(title, description, marketplace) {
     try {
-      const prompt = `Como especialista em vendas no Mercado Livre, analise o seguinte anúncio e forneça sugestões de melhorias:
+      const marketplaceInfo = this.getMarketplaceInfo(marketplace);
+      const prompt = `Como especialista em vendas no ${marketplaceInfo.name}, analise o seguinte anúncio e forneça sugestões de melhorias:
 
 Título: "${title}"
 Descrição: "${description}"
@@ -85,6 +90,7 @@ Forneça uma análise detalhada considerando:
 3. Clareza e formatação
 4. Pontos fortes
 5. Pontos a melhorar
+6. ${marketplaceInfo.specificTips}
 
 Formato da resposta:
 {
@@ -107,6 +113,23 @@ Formato da resposta:
       console.error("Erro ao analisar anúncio:", error);
       throw error;
     }
+  }
+
+  getMarketplaceInfo(marketplace) {
+    const marketplaces = {
+      mercadolivre: {
+        name: "Mercado Livre",
+        titleLimit: "60 caracteres",
+        specificTips: "Incluir palavras-chave no início do título, usar termos como 'novo', 'original', 'garantia'"
+      },
+      shopee: {
+        name: "Shopee",
+        titleLimit: "100 caracteres",
+        specificTips: "Incluir promoções, frete grátis, e usar hashtags relevantes"
+      }
+    };
+
+    return marketplaces[marketplace] || marketplaces.mercadolivre;
   }
 }
 
