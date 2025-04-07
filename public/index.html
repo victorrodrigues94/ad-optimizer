@@ -169,5 +169,14 @@
         </main>
     </div>
     <script src="app.js"></script>
+    <script>
+        // Check if user is authenticated
+        const token = localStorage.getItem('token');
+        const user = JSON.parse(localStorage.getItem('user'));
+        
+        if (!token || !user) {
+            window.location.href = 'login.html';
+        }
+    </script>
 </body>
 </html> 
