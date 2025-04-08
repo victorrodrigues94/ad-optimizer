@@ -60,7 +60,11 @@ Considere:
 7. Formatação com bullets points quando apropriado
 8. ${marketplaceInfo.specificTips}
 
-Retorne a descrição formatada e otimizada.`;
+Formato da resposta:
+- Para Mercado Livre: Use apenas texto, bullets points com "-" e quebras de linha. Não use emojis ou caracteres especiais.
+- Para Shopee: Use emojis, bullets points com "•", e formatação mais dinâmica.
+
+Retorne a descrição formatada e otimizada, pronta para copiar e colar.`;
 
       const completion = await this.client.chat.completions.create({
         model: "gpt-3.5-turbo",
@@ -120,12 +124,14 @@ Formato da resposta:
       mercadolivre: {
         name: "Mercado Livre",
         titleLimit: "60 caracteres",
-        specificTips: "Incluir palavras-chave no início do título, usar termos como 'novo', 'original', 'garantia'"
+        specificTips: "Incluir palavras-chave no início do título, usar termos como 'novo', 'original', 'garantia'",
+        descriptionFormat: "texto simples com bullets points usando '-'"
       },
       shopee: {
         name: "Shopee",
         titleLimit: "100 caracteres",
-        specificTips: "Incluir promoções, frete grátis, e usar hashtags relevantes"
+        specificTips: "Incluir promoções, frete grátis, e usar hashtags relevantes",
+        descriptionFormat: "texto com emojis, bullets points usando '•' e formatação dinâmica"
       }
     };
 
