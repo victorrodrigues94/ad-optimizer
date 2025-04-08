@@ -1,75 +1,80 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Sidebar functionality
+    const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
+    const toggleButton = document.querySelector('.toggle-sidebar');
+    const logoutButton = document.getElementById('logout');
+
+    // Toggle sidebar
+    toggleButton.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+        mainContent.classList.toggle('expanded');
+    });
+
+    // Handle logout
+    logoutButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = 'login.html';
+    });
+
+    // Form submission
     const form = document.getElementById('optimizerForm');
     const results = document.getElementById('results');
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        const submitButton = form.querySelector('button[type="submit"]');
-        const originalButtonText = submitButton.textContent;
-        submitButton.textContent = 'Otimizando...';
-        submitButton.disabled = true;
+        const formData = {
+            marketplace: document.querySelector('input[name="marketplace"]:checked').value,
+            category: document.getElementById('category').value,
+            title: document.getElementById('title').value,
+            description: document.getElementById('description').value
+        };
 
         try {
-            const formData = {
-                marketplace: form.querySelector('input[name="marketplace"]:checked').value,
-                category: document.getElementById('category').value,
-                title: document.getElementById('title').value,
-                description: document.getElementById('description').value
-            };
-
-            // Fazer a chamada para a API
             const response = await fetch('/api/optimize', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
                 body: JSON.stringify(formData)
             });
 
-            if (!response.ok) {
-                throw new Error('Erro ao otimizar anúncio');
+            if (response.ok) {
+                const data = await response.json();
+                
+                // Update results
+                document.getElementById('optimizedTitle').textContent = data.optimizedTitle;
+                document.getElementById('optimizedDescription').textContent = data.optimizedDescription;
+                document.getElementById('seoScore').textContent = `${data.analysis.seoScore}/10`;
+                document.getElementById('conversionScore').textContent = `${data.analysis.conversionScore}/10`;
+                
+                // Update lists
+                const strengthsList = document.getElementById('strengths');
+                const weaknessesList = document.getElementById('weaknesses');
+                const suggestionsList = document.getElementById('suggestions');
+                
+                strengthsList.innerHTML = data.analysis.strengths.map(item => `<li>${item}</li>`).join('');
+                weaknessesList.innerHTML = data.analysis.weaknesses.map(item => `<li>${item}</li>`).join('');
+                suggestionsList.innerHTML = data.analysis.suggestions.map(item => `<li>${item}</li>`).join('');
+                
+                // Show results
+                results.classList.remove('hidden');
+                
+                // Scroll to results
+                results.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                const error = await response.json();
+                alert(error.message || 'Erro ao processar a otimização');
             }
-
-            const data = await response.json();
-
-            // Atualizar a interface com os resultados
-            document.getElementById('optimizedTitle').textContent = data.optimizedTitle;
-            document.getElementById('optimizedDescription').textContent = data.optimizedDescription;
-            
-            // Atualizar scores
-            document.getElementById('seoScore').textContent = data.analysis.seoScore;
-            document.getElementById('conversionScore').textContent = data.analysis.conversionScore;
-
-            // Atualizar listas de análise
-            updateList('strengths', data.analysis.strengths);
-            updateList('weaknesses', data.analysis.weaknesses);
-            updateList('suggestions', data.analysis.suggestions);
-
-            // Mostrar resultados
-            results.classList.remove('hidden');
-            
-            // Scroll suave até os resultados
-            results.scrollIntoView({ behavior: 'smooth' });
-
         } catch (error) {
-            console.error('Erro:', error);
-            alert('Ocorreu um erro ao otimizar o anúncio. Por favor, tente novamente.');
-        } finally {
-            submitButton.textContent = originalButtonText;
-            submitButton.disabled = false;
+            console.error('Error:', error);
+            alert('Erro ao processar a otimização. Por favor, tente novamente.');
         }
     });
-
-    function updateList(elementId, items) {
-        const ul = document.getElementById(elementId);
-        ul.innerHTML = '';
-        items.forEach(item => {
-            const li = document.createElement('li');
-            li.textContent = item;
-            ul.appendChild(li);
-        });
-    }
 
     // Adicionar efeito hover nos cards de marketplace
     const marketplaceCards = document.querySelectorAll('.marketplace-card');

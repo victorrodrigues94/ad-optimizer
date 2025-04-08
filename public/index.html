@@ -3,34 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Otimizador de Anúncios - ML</title>
+    <title>Otimizador de Anúncios</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
             <div class="logo">
                 <i class="fas fa-robot"></i>
-                <h1>Otimizador de Anúncios</h1>
+                <span>Otimizador</span>
             </div>
-            <p>Melhore seus anúncios com IA</p>
-        </header>
+            <button class="toggle-sidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active">
+                    <a href="#">
+                        <i class="fas fa-home"></i>
+                        <span>Início</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-magic"></i>
+                        <span>Melhorar Anúncio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contato</span>
+                    </a>
+                </li>
+                <li class="logout">
+                    <a href="#" id="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 
-        <main>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <header>
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <h1>Otimizador de Anúncios</h1>
+                </div>
+                <p>Use IA para otimizar seus anúncios no Mercado Livre e Shopee</p>
+            </header>
+
             <form id="optimizerForm" class="optimizer-form">
                 <div class="marketplace-selector">
-                    <h3>Selecione o Marketplace</h3>
+                    <h3>
+                        <i class="fas fa-store"></i>
+                        Selecione o Marketplace
+                    </h3>
                     <div class="marketplace-options">
                         <label class="marketplace-option">
-                            <input type="radio" name="marketplace" value="mercadolivre" checked>
+                            <input type="radio" name="marketplace" value="Mercado Livre" required>
                             <div class="marketplace-card">
-                                <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.19.1/mercadolibre/logo__large_plus.png" alt="Mercado Livre">
+                                <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.19.1/mercadolibre/logo__small@2x.png" alt="Mercado Livre">
                                 <span>Mercado Livre</span>
                             </div>
                         </label>
                         <label class="marketplace-option">
-                            <input type="radio" name="marketplace" value="shopee">
+                            <input type="radio" name="marketplace" value="Shopee" required>
                             <div class="marketplace-card">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Shopee.svg/1200px-Shopee.svg.png" alt="Shopee">
                                 <span>Shopee</span>
@@ -85,7 +131,7 @@
                         Título Original
                     </label>
                     <input type="text" id="title" name="title" required 
-                           placeholder="Digite o título atual do seu produto">
+                           placeholder="Digite o título original do anúncio">
                 </div>
 
                 <div class="form-group">
@@ -94,7 +140,7 @@
                         Descrição Original
                     </label>
                     <textarea id="description" name="description" required 
-                              placeholder="Digite a descrição atual do seu produto"></textarea>
+                              placeholder="Digite a descrição original do anúncio"></textarea>
                 </div>
 
                 <button type="submit" class="submit-button">
@@ -108,13 +154,13 @@
                     <i class="fas fa-chart-line"></i>
                     Resultados da Otimização
                 </h2>
-                
+
                 <div class="result-section">
                     <h3>
                         <i class="fas fa-heading"></i>
                         Título Otimizado
                     </h3>
-                    <div id="optimizedTitle" class="result-content"></div>
+                    <div class="result-content" id="optimizedTitle"></div>
                 </div>
 
                 <div class="result-section">
@@ -122,25 +168,24 @@
                         <i class="fas fa-align-left"></i>
                         Descrição Otimizada
                     </h3>
-                    <div id="optimizedDescription" class="result-content"></div>
+                    <div class="result-content" id="optimizedDescription"></div>
                 </div>
 
                 <div class="result-section">
                     <h3>
                         <i class="fas fa-chart-pie"></i>
-                        Análise do Anúncio
+                        Análise Completa
                     </h3>
                     <div class="scores">
                         <div class="score">
-                            <label>Score SEO</label>
-                            <div id="seoScore" class="score-value">-</div>
+                            <label>Pontuação SEO</label>
+                            <div class="score-value" id="seoScore">0/10</div>
                         </div>
                         <div class="score">
-                            <label>Score de Conversão</label>
-                            <div id="conversionScore" class="score-value">-</div>
+                            <label>Pontuação de Conversão</label>
+                            <div class="score-value" id="conversionScore">0/10</div>
                         </div>
                     </div>
-                    
                     <div class="analysis-details">
                         <div class="detail-section">
                             <h4>
@@ -152,7 +197,7 @@
                         <div class="detail-section">
                             <h4>
                                 <i class="fas fa-exclamation-triangle"></i>
-                                Pontos a Melhorar
+                                Pontos de Melhoria
                             </h4>
                             <ul id="weaknesses"></ul>
                         </div>
@@ -166,7 +211,7 @@
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
     </div>
     <script src="app.js"></script>
     <script>
