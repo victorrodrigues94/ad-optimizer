@@ -61,11 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             loadingOverlay.querySelector('.loading-status').textContent = 'Iniciando otimização...';
             
             // Get form data
-            const marketplace = document.querySelector('input[name="marketplace"]:checked')?.value;
-            if (!marketplace) {
-                throw new Error('Por favor, selecione um marketplace');
-            }
-            
+            const marketplace = "Mercado Livre"; // Set Mercado Livre as default
             const category = document.getElementById('category')?.value;
             if (!category) {
                 throw new Error('Por favor, selecione uma categoria');
@@ -214,21 +210,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Adicionar efeito hover nos cards de marketplace
-    const marketplaceCards = document.querySelectorAll('.marketplace-card');
-    marketplaceCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            if (!card.previousElementSibling?.checked) {
-                card.style.transform = 'translateY(-2px)';
-                card.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-            }
-        });
-
-        card.addEventListener('mouseleave', () => {
-            if (!card.previousElementSibling?.checked) {
-                card.style.transform = 'translateY(0)';
-                card.style.boxShadow = 'none';
-            }
-        });
-    });
+    // Remove marketplace card hover effects since they're no longer needed
 }); 
