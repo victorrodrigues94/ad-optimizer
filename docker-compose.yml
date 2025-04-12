@@ -7,6 +7,32 @@ services:
       - NODE_ENV=production
       - OPENAI_API_KEY=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
       - PIXELCUT_API_KEY=sk_a7a5356f51944974b3b3b4e39ec96b60
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=ad_optimizer
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=ad_optimizer
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
     volumes:
-      - ./database.sqlite:/usr/src/app/database.sqlite
-    restart: unless-stopped 
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres_data: 
