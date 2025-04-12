@@ -120,6 +120,32 @@
                               placeholder="Digite a descrição original do anúncio"></textarea>
                 </div>
 
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-images"></i>
+                        Imagens do Produto
+                    </label>
+                    <div class="image-upload-container">
+                        <div class="image-upload-dropzone" id="imageDropzone">
+                            <div class="dropzone-content">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Arraste e solte até 12 imagens aqui</p>
+                                <p class="dropzone-subtext">ou clique para selecionar</p>
+                            </div>
+                            <input type="file" id="imageInput" multiple accept="image/*" style="display: none;">
+                        </div>
+                        <div class="image-preview-grid" id="imagePreviewGrid">
+                            <!-- Image previews will be added here -->
+                        </div>
+                        <div class="image-upload-progress" id="uploadProgress">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                    </div>
+                </div>
+
                 <button type="submit" class="submit-button">
                     <i class="fas fa-magic"></i>
                     Otimizar Anúncio
