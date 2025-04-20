@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /caminho/para/seu-projeto || exit
+cd /home/ec2-user/ad-optimizer || exit
 echo "→ Puxando últimas alterações..."
 git pull
 
