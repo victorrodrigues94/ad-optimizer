@@ -3,13 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Otimizador de Anúncios</title>
-    <script>
-        // Redirect to dashboard
-        window.location.href = 'dashboard.html';
-    </script>
+    <title>Otimizador de Anúncios - Potencialize suas vendas</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            transition: transform 0.3s ease;
+        }
+    </style>
 </head>
-<body>
-    <p>Redirecionando para o dashboard...</p>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="/" class="text-2xl font-bold text-indigo-600">AdOptimizer</a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <a href="/login" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Login</a>
+                    <a href="/register" class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700">Cadastre-se</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-gradient text-white">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                    Potencialize suas vendas com anúncios otimizados
+                </h1>
+                <p class="mt-6 text-xl max-w-3xl mx-auto">
+                    Transforme seus anúncios em máquinas de vendas com nossa tecnologia de IA avançada
+                </p>
+                <div class="mt-10">
+                    <a href="/register" class="bg-white text-indigo-600 px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-100">
+                        Comece agora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="text-indigo-600 text-4xl mb-4">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">IA Avançada</h3>
+                    <p class="text-gray-600">Nossa IA analisa e otimiza seus anúncios para maximizar conversões</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-indigo-600 text-4xl mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Análise Completa</h3>
+                    <p class="text-gray-600">Receba insights detalhados sobre o desempenho dos seus anúncios</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-indigo-600 text-4xl mb-4">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Otimização de Imagens</h3>
+                    <p class="text-gray-600">Melhore a qualidade das suas imagens automaticamente</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <div class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-extrabold text-center mb-12">Planos que se adaptam a você</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Plano Básico -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden pricing-card">
+                    <div class="px-6 py-8">
+                        <h3 class="text-2xl font-bold text-center mb-4">Básico</h3>
+                        <div class="text-center mb-8">
+                            <span class="text-4xl font-bold">R$ 29</span>
+                            <span class="text-gray-600">/mês</span>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>10 otimizações por mês</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Análise básica de anúncios</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Suporte por email</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8">
+                            <a href="/register" class="block w-full bg-indigo-600 text-white text-center py-2 rounded-md hover:bg-indigo-700">
+                                Começar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plano Profissional -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden pricing-card transform scale-105">
+                    <div class="px-6 py-8">
+                        <div class="absolute top-0 right-0 bg-indigo-600 text-white px-4 py-1 rounded-bl-lg">
+                            Popular
+                        </div>
+                        <h3 class="text-2xl font-bold text-center mb-4">Profissional</h3>
+                        <div class="text-center mb-8">
+                            <span class="text-4xl font-bold">R$ 79</span>
+                            <span class="text-gray-600">/mês</span>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>50 otimizações por mês</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Análise avançada de anúncios</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Otimização de imagens</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Suporte prioritário</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8">
+                            <a href="/register" class="block w-full bg-indigo-600 text-white text-center py-2 rounded-md hover:bg-indigo-700">
+                                Começar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plano Empresarial -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden pricing-card">
+                    <div class="px-6 py-8">
+                        <h3 class="text-2xl font-bold text-center mb-4">Empresarial</h3>
+                        <div class="text-center mb-8">
+                            <span class="text-4xl font-bold">R$ 199</span>
+                            <span class="text-gray-600">/mês</span>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Otimizações ilimitadas</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Análise completa de anúncios</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>API de integração</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Suporte dedicado</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8">
+                            <a href="/register" class="block w-full bg-indigo-600 text-white text-center py-2 rounded-md hover:bg-indigo-700">
+                                Começar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">AdOptimizer</h3>
+                    <p class="text-gray-400">Potencialize suas vendas com anúncios otimizados por IA</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Links Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Sobre</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contato</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contato</h3>
+                    <ul class="space-y-2">
+                        <li class="text-gray-400">contato@adoptimizer.com</li>
+                        <li class="text-gray-400">(11) 99999-9999</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>&copy; 2024 AdOptimizer. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html> 
