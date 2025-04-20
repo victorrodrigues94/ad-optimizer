@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Store token in localStorage
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data.user));
-                // Redirect to main page
-                window.location.href = 'index.html';
+                // Redirect to dashboard
+                window.location.href = 'dashboard.html';
             } else {
                 const error = await response.json();
                 alert(error.message || 'Email ou senha inválidos');

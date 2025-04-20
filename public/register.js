@@ -52,8 +52,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.ok) {
-                alert('Cadastro realizado com sucesso!');
-                window.location.href = 'login.html';
+                const data = await response.json();
+                // Store token and user data
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+                // Redirect to dashboard
+                window.location.href = 'dashboard.html';
             } else {
                 const error = await response.json();
                 alert(error.message || 'Erro ao realizar cadastro. Por favor, tente novamente.');
