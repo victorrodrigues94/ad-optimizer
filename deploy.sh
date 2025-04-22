@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/ec2-user/ad-optimizer || exit
+cd /home/ubuntu/ad-optimizer || exit
 echo "→ Puxando últimas alterações..."
 git pull
 
