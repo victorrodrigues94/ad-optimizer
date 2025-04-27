@@ -41,6 +41,26 @@ class ImageService {
         }
     }
 
+    async downloadImage(url) {
+        try {
+            const response = await axios({
+                method: 'GET',
+                url: url,
+                responseType: 'arraybuffer'
+            });
+
+            const filename = `upscaled_${Date.now()}_${Math.random().toString(36).substring(7)}.png`;
+            const filePath = path.join(this.tempDir, filename);
+            
+            fs.writeFileSync(filePath, response.data);
+            
+            return `/temp/${filename}`;
+        } catch (error) {
+            console.error('Erro ao fazer download da imagem:', error);
+            throw error;
+        }
+    }
+
     async upscaleImage(imageUrl, scale = 2) {
         console.log("Processing image....");
         try {
@@ -74,10 +94,14 @@ class ImageService {
             console.log("Calling api upscaler....");
 
             const response = await axios.request(config);
-
             console.log(response.data);
 
-            return response.data;
+            // Return the upscaled image URL and filename for download
+            const filename = `imagem_melhorada_${Date.now()}.png`;
+            return {
+                downloadUrl: response.data.result_url,
+                filename: filename
+            };
         } catch (error) {
             console.error('Erro ao fazer upscale da imagem:', error);
             throw error;
