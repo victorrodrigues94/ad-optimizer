@@ -49,8 +49,8 @@ class ImageService {
             }
 
             // Make sure we have a full URL
-            if (!imageUrl.startsWith('http')) {
-                imageUrl = `http://localhost:${process.env.PORT || 3000}${imageUrl}`;
+            if (!imageUrl.startsWith('https')) {
+                imageUrl = `https://otimizadordeanuncios.com.br${imageUrl}`;
             }
 
             const data = JSON.stringify({
