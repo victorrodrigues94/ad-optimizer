@@ -42,6 +42,7 @@ class ImageService {
     }
 
     async upscaleImage(imageUrl, scale = 2) {
+        console.log("Processing image....");
         try {
             // If the image is a base64 string, save it first
             if (imageUrl.startsWith('data:')) {
@@ -70,7 +71,12 @@ class ImageService {
                 data: data
             };
 
+            console.log("Calling api upscaler....");
+
             const response = await axios.request(config);
+
+            console.log(response.data);
+
             return response.data;
         } catch (error) {
             console.error('Erro ao fazer upscale da imagem:', error);
